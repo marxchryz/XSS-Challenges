@@ -35,13 +35,13 @@ function check_xss(message) {
   return message;
 }
 
-function say_quote(name, message, year) {
-  document.querySelector('#name').innerHTML = name + ' (' + year + ')';
+function say_quote(name, message) {
+  document.querySelector('#name').innerHTML = name + ' (2020)';
   document.querySelector('#message').innerHTML = check_xss(message);
 }
 
 let user = {
-  year: '2020',
+  id: 1,
 };
 
 // accepts JSON in format {"name": "Juan", "message": "Some text here"}
@@ -50,4 +50,4 @@ let input = JSON.parse(decodeURIComponent(document.location.hash.substring(1)));
 input.name = sanitize(input.name); // disable tags for name
 
 user = deep_merge(user, input); // I could use shallow merge but i still used deep merge, why?
-say_quote(user.name, user.message, user.year);
+say_quote(user.name, user.message);
